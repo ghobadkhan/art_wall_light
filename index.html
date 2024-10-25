@@ -4,13 +4,13 @@
     </head>
     <style>
         * {
+            font-family: 'Roboto', sans-serif;
             box-sizing: border-box;
             margin: 0;
             padding: 0;
         }
         
         .frame {
-            font-family: 'Roboto', sans-serif;
             background: linear-gradient(to right, #ff7e5f, #feb47b);
             color: #fff;
             text-align: center;
@@ -20,14 +20,22 @@
             height: 100vh;
             overflow: hidden;
             flex-direction: column;
+            opacity: 0;
+            transition: opacity 0.5s ease-in-out;
+        }
+
+        .frame.visible {
+            opacity: 1;
+            /* transform: translateY(0); */
         }
 
         .box {
-            background: rgba(255, 255, 255, 0.1);
             border-radius: 15px;
             padding: 50px 30px;
+            background: rgba(255, 255, 255, 0.2);
             box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-            transition: transform 0.5s ease2D Detailed Drawings;
+            /* transform: translateY(10px); */
+            /* transition: transform 0.5s ease2D Detailed Drawings; */
             text-align: center;
         }
         
@@ -44,6 +52,19 @@
             text-wrap: nowrap;
         }
         
+        .footer {
+            /* height: 5vh; */
+            position: fixed;
+            left: 0;
+            bottom: 0;
+            width: 100%;
+            background-color: #333;
+            color: white;
+            text-align: center;
+            font-size: 2vw;
+            text-wrap: wrap;
+
+        }
         
         h1 {
             font-size: 4rem;
@@ -51,7 +72,7 @@
             animation: fadeIn 2s ease-in-out;
         }
 
-        p {
+        .description {
             font-size: 1.5rem;
             margin-bottom: 30px;
             color: #f0f0f0;
@@ -67,24 +88,14 @@
             border-radius: 25px;
             cursor: pointer;
             transition: background-color 0.3s, transform 0.3s;
+            transform: translateY(100px);
             text-decoration: none;
         }
 
         .btn:hover {
-            background-color: #fefefe;
+            background-color: #848484;
             transform: translateY(-10px);
             transform: scale(1.1);
-        }
-
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
         }
 
         @media (max-width: 920px) {
@@ -92,7 +103,7 @@
                 font-size: 3rem;
             }
 
-            p {
+            .description {
                 font-size: 1.2rem;
             }
 
@@ -102,13 +113,16 @@
             .container {
                 flex-direction: column;
             }
+            .footer {
+                font-size: 2.5vw;
+            }
         }
         @media (max-width: 510px) {
             h1 {
                 font-size: 9vw;
             }
 
-            p {
+            .description {
                 font-size: 6.2vw;
             }
 
@@ -120,12 +134,18 @@
             }
         }
     </style>
+    <script>
+        setTimeout(() => {
+            const element = document.querySelector('.frame');
+            element.classList.toggle('visible');
+        }, 100);
+    </script>
     <body>
         <main class="frame">
             <div class="box">
                 <div class="text-box">
                     <h1>Gaetano Sciolari Project</h1>
-                    <p>This project is a demo for 3D modelling of the Gaetano Sciolari artwork.</p>
+                    <p class="description">This project is a demo for 3D modelling of the Gaetano Sciolari artwork.</p>
                 </div>
                 <div class="container"> 
                     <div class="item">
@@ -144,8 +164,10 @@
                         </a>
                     </div>
                 </div>
-            </div>
-
-        </main>
+            </div>  
+        </main>  
     </body>
+    <footer class="footer">
+        <p>&copy; 2024, 3D modelling and online implementation by Arian Ghobadi. All rights reserved.</p>
+    </footer>
 </html>
